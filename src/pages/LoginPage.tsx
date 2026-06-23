@@ -205,7 +205,8 @@ export default function LoginPage() {
                 type="button"
                 onClick={() => {
                   const clientId = import.meta.env.VITE_GITHUB_CLIENT_ID || 'your-github-client-id';
-                  window.location.assign(`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=http://localhost:5173/login`);
+                  const redirectUri = window.location.origin + '/login';
+                  window.location.assign(`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}`);
                 }}
                 className="btn-ghost py-2.5 text-sm"
               >
