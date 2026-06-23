@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 // @ts-ignore
 import Particles from './components/Particles';
 import Navbar from './components/Navbar';
@@ -59,32 +60,42 @@ function AppRoutes() {
   );
 }
 
+function MainLayout() {
+  const { theme } = useTheme();
+
+  return (
+    <div className={`${theme} min-h-screen relative overflow-x-hidden isolate`}>
+      {/* Fixed Particles background layer */}
+      <div className="fixed inset-0 bg-background -z-30" />
+      <div className="fixed inset-0 -z-20 pointer-events-none opacity-40">
+        <Particles
+          particleColors={["#D100D1", "#00F0FF", "#9526ff"]}
+          particleCount={240}
+          particleSpread={11}
+          speed={0.08}
+          particleBaseSize={110}
+          moveParticlesOnHover={true}
+          alphaParticles={true}
+          disableRotation={false}
+        />
+      </div>
+      
+      <Navbar />
+      <AppRoutes />
+      <Toaster position="bottom-right" />
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <AuthProvider>
-        <div className="dark min-h-screen relative overflow-x-hidden isolate">
-          {/* Fixed Particles background layer */}
-          <div className="fixed inset-0 bg-background -z-30" />
-          <div className="fixed inset-0 -z-20 pointer-events-none opacity-40">
-            <Particles
-              particleColors={["#D100D1", "#00F0FF", "#9526ff"]}
-              particleCount={240}
-              particleSpread={11}
-              speed={0.08}
-              particleBaseSize={110}
-              moveParticlesOnHover={true}
-              alphaParticles={true}
-              disableRotation={false}
-            />
-          </div>
-          
-          <Navbar />
-          <AppRoutes />
-          <Toaster position="bottom-right" />
-        </div>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <MainLayout />
+        </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

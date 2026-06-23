@@ -24,7 +24,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = localStorage.getItem('ai-tools-user');
-    const token = localStorage.getItem('ai-tools-token');
     if (stored) setUser(JSON.parse(stored));
     
     // Optional: fetch to /api/auth/me using token to verify

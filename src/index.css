@@ -6,7 +6,29 @@
 
 @layer base {
   :root {
+    color-scheme: light;
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --surface-2: #f1f5f9;
+    --surface-3: #e2e8f0;
+    --border: rgba(15, 23, 42, 0.08);
+    --border-strong: rgba(15, 23, 42, 0.15);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+  }
+
+  .dark {
     color-scheme: dark;
+    --background: #080810;
+    --surface: #0f0f1a;
+    --surface-2: #151525;
+    --surface-3: #1a1a30;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.15);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.6);
+    --text-muted: rgba(255, 255, 255, 0.4);
   }
 
   * {
@@ -221,3 +243,120 @@
     -webkit-tap-highlight-color: transparent;
   }
 }
+
+/* Light mode overrides */
+.light body {
+  color: var(--text-primary);
+}
+
+.light .text-white {
+  color: var(--text-primary) !important;
+}
+
+.light .text-white\/95 { color: rgba(15, 23, 42, 0.95) !important; }
+.light .text-white\/90 { color: rgba(15, 23, 42, 0.9) !important; }
+.light .text-white\/80 { color: rgba(15, 23, 42, 0.8) !important; }
+.light .text-white\/70 { color: rgba(15, 23, 42, 0.7) !important; }
+.light .text-white\/60 { color: rgba(15, 23, 42, 0.6) !important; }
+.light .text-white\/50 { color: rgba(15, 23, 42, 0.5) !important; }
+.light .text-white\/40 { color: rgba(15, 23, 42, 0.4) !important; }
+.light .text-white\/30 { color: rgba(15, 23, 42, 0.3) !important; }
+.light .text-white\/25 { color: rgba(15, 23, 42, 0.25) !important; }
+.light .text-white\/20 { color: rgba(15, 23, 42, 0.2) !important; }
+.light .text-white\/10 { color: rgba(15, 23, 42, 0.1) !important; }
+
+.light .border-white\/20 { border-color: rgba(15, 23, 42, 0.2) !important; }
+.light .border-white\/15 { border-color: rgba(15, 23, 42, 0.15) !important; }
+.light .border-white\/10 { border-color: rgba(15, 23, 42, 0.1) !important; }
+.light .border-white\/8  { border-color: rgba(15, 23, 42, 0.08) !important; }
+.light .border-white\/6  { border-color: rgba(15, 23, 42, 0.06) !important; }
+.light .border-white\/5  { border-color: rgba(15, 23, 42, 0.05) !important; }
+
+.light .bg-white\/20 { background-color: rgba(15, 23, 42, 0.2) !important; }
+.light .bg-white\/15 { background-color: rgba(15, 23, 42, 0.15) !important; }
+.light .bg-white\/10 { background-color: rgba(15, 23, 42, 0.1) !important; }
+.light .bg-white\/8  { background-color: rgba(15, 23, 42, 0.08) !important; }
+.light .bg-white\/5  { background-color: rgba(15, 23, 42, 0.05) !important; }
+.light .bg-white\/3  { background-color: rgba(15, 23, 42, 0.03) !important; }
+
+/* Light glassmorphism overrides */
+.light .glass {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+}
+
+.light .glass-sm {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+}
+
+.light .glass-hover:hover {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.06), 0 0 40px rgba(209, 0, 209, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+  transform: translateY(-4px) scale(1.01) !important;
+}
+
+.light .input-glass {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+  color: var(--text-primary) !important;
+}
+
+.light .input-glass::placeholder {
+  color: rgba(15, 23, 42, 0.4) !important;
+}
+
+.light .input-glass:focus {
+  border-color: #D100D1 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(209, 0, 209, 0.1) !important;
+}
+
+.light .btn-ghost {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+  border-color: rgba(15, 23, 42, 0.06) !important;
+  color: rgba(15, 23, 42, 0.6) !important;
+}
+
+.light .btn-ghost:hover {
+  background-color: rgba(15, 23, 42, 0.08) !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  color: var(--text-primary) !important;
+}
+
+.light .section-title {
+  color: var(--text-primary) !important;
+}
+
+.light .section-subtitle {
+  color: var(--text-secondary) !important;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(209, 0, 209, 0.2);
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(209, 0, 209, 0.4);
+}
+
+.light .text-solid {
+  color: rgba(15, 23, 42, 0.015) !important;
+}
+
+.light .text-outline {
+  -webkit-text-stroke: 1.5px rgba(15, 23, 42, 0.015) !important;
+}
+
+/* Light mode support for particles opacity */
+.light .pointer-events-none.opacity-40 {
+  opacity: 0.15 !important;
+}
+

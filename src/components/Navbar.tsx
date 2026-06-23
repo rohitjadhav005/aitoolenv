@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import { Search, Menu, X, Bookmark, Plus, User, LogOut, LayoutDashboard } from 'lucide-react';
+import { Search, Menu, X, Bookmark, Plus, User, LogOut, LayoutDashboard, Sun, Moon } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
   const [searchOpen, setSearchOpen] = useState(false);
@@ -92,6 +94,15 @@ export default function Navbar() {
 
             {/* Right Actions */}
             <div className="flex justify-end items-center gap-2 md:gap-3">
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className="btn-ghost !p-2.5 flex items-center justify-center text-sm"
+                aria-label="Toggle Theme"
+              >
+                {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+
               {/* Search button */}
               <button
                 onClick={() => setSearchOpen(true)}
@@ -259,6 +270,23 @@ export default function Navbar() {
                     </Link>
                   )}
                   
+                  <button
+                    onClick={toggleTheme}
+                    className="btn-ghost flex items-center justify-center gap-2.5 text-sm py-2.5 w-full mt-1 rounded-xl"
+                  >
+                    {theme === 'dark' ? (
+                      <>
+                        <Sun size={15} className="text-white/40" />
+                        <span>Light Mode</span>
+                      </>
+                    ) : (
+                      <>
+                        <Moon size={15} className="text-white/40" />
+                        <span>Dark Mode</span>
+                      </>
+                    )}
+                  </button>
+
                   <Link
                     to="/submit"
                     className="btn-accent flex items-center justify-center text-sm py-2.5 w-full mt-1 rounded-xl"

@@ -34,7 +34,7 @@ const PRESETS = {
   'page-footer': { position: 'bottom', height: '10rem', target: 'page', strength: 3 }
 };
 
-const CURVE_FUNCTIONS = {
+const CURVE_FUNCTIONS: Record<string, (p: number) => number> = {
   linear: p => p,
   bezier: p => p * p * (3 - 2 * p),
   'ease-in': p => p * p,
@@ -42,10 +42,10 @@ const CURVE_FUNCTIONS = {
   'ease-in-out': p => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2)
 };
 
-const mergeConfigs = (...configs) => configs.reduce((acc, c) => ({ ...acc, ...c }), {});
+const mergeConfigs = (...configs: any[]) => configs.reduce((acc, c) => ({ ...acc, ...c }), {});
 
-const getGradientDirection = position => {
-  const directions = {
+const getGradientDirection = (position: string) => {
+  const directions: Record<string, string> = {
     top: 'to top',
     bottom: 'to bottom',
     left: 'to left',
@@ -54,16 +54,16 @@ const getGradientDirection = position => {
   return directions[position] || 'to bottom';
 };
 
-const debounce = (fn, wait) => {
-  let t;
-  return (...a) => {
-    clearTimeout(t);
+const debounce = (fn: (...args: any[]) => void, wait: number) => {
+  let t: ReturnType<typeof setTimeout> | undefined;
+  return (...a: any[]) => {
+    if (t) clearTimeout(t);
     t = setTimeout(() => fn(...a), wait);
   };
 };
 
-const useResponsiveDimension = (responsive, config, key) => {
-  const [val, setVal] = useState(config[key]);
+const useResponsiveDimension = (responsive: boolean, config: any, key: string) => {
+  const [val, setVal] = useState<any>(config[key]);
   useEffect(() => {
     if (!responsive) return;
     const calc = () => {
@@ -85,7 +85,7 @@ const useResponsiveDimension = (responsive, config, key) => {
   return responsive ? val : config[key];
 };
 
-const useIntersectionObserver = (ref, shouldObserve = false) => {
+const useIntersectionObserver = (ref: React.RefObject<HTMLElement | null>, shouldObserve = false) => {
   const [isVisible, setIsVisible] = useState(!shouldObserve);
 
   useEffect(() => {
@@ -100,8 +100,30 @@ const useIntersectionObserver = (ref, shouldObserve = false) => {
   return isVisible;
 };
 
-const GradualBlur = props => {
-  const containerRef = useRef(null);
+interface GradualBlurProps {
+  preset?: keyof typeof PRESETS;
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  strength?: number;
+  height?: string | number;
+  width?: string | number;
+  divCount?: number;
+  exponential?: boolean;
+  zIndex?: number;
+  animated?: boolean | 'scroll';
+  duration?: string;
+  easing?: string;
+  opacity?: number;
+  curve?: keyof typeof CURVE_FUNCTIONS;
+  responsive?: boolean;
+  target?: 'parent' | 'page';
+  className?: string;
+  style?: React.CSSProperties;
+  hoverIntensity?: number;
+  onAnimationComplete?: () => void;
+}
+
+const GradualBlur = (props: GradualBlurProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
   const config = useMemo(() => {
@@ -166,7 +188,7 @@ const GradualBlur = props => {
     const isHorizontal = ['left', 'right'].includes(config.position);
     const isPageTarget = config.target === 'page';
 
-    const baseStyle: React.CSSProperties = {
+    const baseStyle: any = {
       position: (isPageTarget ? 'fixed' : 'absolute') as 'fixed' | 'absolute',
       pointerEvents: (config.hoverIntensity ? 'auto' : 'none') as 'auto' | 'none',
       opacity: isVisible ? 1 : 0,
@@ -189,7 +211,7 @@ const GradualBlur = props => {
       baseStyle.bottom = 0;
     }
 
-    return baseStyle;
+    return baseStyle as React.CSSProperties;
   }, [config, responsiveHeight, responsiveWidth, isVisible]);
 
   const { hoverIntensity, animated, onAnimationComplete, duration } = config;
@@ -212,6 +234,7 @@ const GradualBlur = props => {
     </div>
   );
 };
+
 const GradualBlurMemo = React.memo(GradualBlur);
 GradualBlurMemo.displayName = 'GradualBlur';
 (GradualBlurMemo as any).PRESETS = PRESETS;
