@@ -43,7 +43,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       
       if (!res.ok) throw new Error(data.error || 'Login failed');
       
-      const loggedInUser: User = { ...data.user, bookmarks: [], submittedTools: [], avatar: 'https://ui-avatars.com/api/?name='+data.user.name, bio: '', createdAt: new Date().toISOString() };
+      const loggedInUser: User = { ...data.user, bookmarks: [], submittedTools: [], avatar: 'https://ui-avatars.com/api/?name='+encodeURIComponent(data.user.name), bio: '', createdAt: new Date().toISOString() };
       setUser(loggedInUser);
       localStorage.setItem('ai-tools-user', JSON.stringify(loggedInUser));
       localStorage.setItem('ai-tools-token', data.token);
@@ -90,7 +90,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       ...data.user, 
       bookmarks: [], 
       submittedTools: [], 
-      avatar: data.user.avatar || 'https://ui-avatars.com/api/?name=' + data.user.name, 
+      avatar: data.user.avatar || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(data.user.name), 
       bio: '', 
       createdAt: new Date().toISOString() 
     };
@@ -112,7 +112,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       
       const newUser: User = {
         ...data.user,
-        avatar: 'https://ui-avatars.com/api/?name='+data.user.name,
+        avatar: 'https://ui-avatars.com/api/?name='+encodeURIComponent(data.user.name),
         bookmarks: [],
         submittedTools: [],
         bio: '',

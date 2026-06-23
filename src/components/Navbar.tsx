@@ -62,14 +62,14 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Nav */}
-            <div className="hidden md:flex items-center justify-center gap-8">
+            <div className="hidden md:flex items-center justify-center gap-4 lg:gap-8 flex-shrink-0">
               {navLinks.map(link => {
                 const isActive = location.pathname === link.href;
                 return (
                   <Link
                     key={link.href}
                     to={link.href}
-                    className={`group relative text-base transition-colors ${
+                    className={`group relative text-base transition-colors whitespace-nowrap shrink-0 ${
                       isActive ? 'text-white font-bold' : 'text-white/60 font-medium'
                     }`}
                   >
@@ -109,14 +109,14 @@ export default function Navbar() {
                 className="btn-ghost !p-2.5 sm:!px-4 sm:!py-2.5 flex items-center gap-2 text-sm"
               >
                 <Search size={18} className="sm:w-[15px] sm:h-[15px]" />
-                <span className="hidden sm:block text-white/40">Search tools...</span>
-                <span className="hidden md:block text-xs text-white/25 border border-white/10 px-1.5 py-0.5 rounded">⌘K</span>
+                <span className="hidden lg:block text-white/40">Search tools...</span>
+                <span className="hidden lg:block text-xs text-white/25 border border-white/10 px-1.5 py-0.5 rounded">⌘K</span>
               </button>
               
               {/* Submit Tool */}
               <Link
                 to="/submit"
-                className="hidden sm:flex items-center justify-center gap-2.5 px-4 py-2 rounded-full bg-black/40 border border-white/10 hover:bg-white/5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] text-sm font-medium text-white"
+                className="hidden sm:flex items-center justify-center gap-2.5 px-4 py-2 rounded-full bg-black/40 border border-white/10 hover:bg-white/5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] text-sm font-medium text-white whitespace-nowrap shrink-0"
               >
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
                 <span className="hidden sm:block">Submit Tool</span>
@@ -130,7 +130,14 @@ export default function Navbar() {
                       onClick={() => setProfileOpen(!profileOpen)}
                       className="flex items-center gap-2 rounded-xl p-1.5 hover:bg-white/5 transition-colors"
                     >
-                      <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-lg object-cover" />
+                      <img 
+                        src={user.avatar} 
+                        alt={user.name} 
+                        className="w-8 h-8 rounded-lg object-cover" 
+                        onError={e => {
+                          (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=7c3aed&color=fff&size=32`;
+                        }}
+                      />
                     </button>
 
                     <AnimatePresence>
@@ -228,7 +235,14 @@ export default function Navbar() {
                   {user ? (
                     <>
                       <div className="px-3.5 py-2.5 flex items-center gap-3 bg-white/[0.03] border border-white/[0.06] rounded-xl mb-2 relative overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
-                        <img src={user.avatar} alt={user.name} className="w-10 h-10 rounded-lg object-cover" />
+                        <img 
+                          src={user.avatar} 
+                          alt={user.name} 
+                          className="w-10 h-10 rounded-lg object-cover" 
+                          onError={e => {
+                            (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=7c3aed&color=fff&size=40`;
+                          }}
+                        />
                         <div>
                           <p className="text-sm font-semibold text-white">{user.name}</p>
                           <p className="text-xs text-white/40">{user.email}</p>
