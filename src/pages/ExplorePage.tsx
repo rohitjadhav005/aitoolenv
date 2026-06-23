@@ -34,7 +34,7 @@ export default function ExplorePage() {
   const [filteredTools, setFilteredTools] = useState<Tool[]>(tools);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/tools')
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/tools`)
       .then(res => res.json())
       .then(data => {
         if (data.tools) {
@@ -67,7 +67,7 @@ export default function ExplorePage() {
       .catch(console.error);
 
     import('socket.io-client').then(({ io }) => {
-      const socket = io('http://localhost:5000');
+      const socket = io((import.meta.env.VITE_API_URL || 'http://localhost:5000'));
       socket.on('tool_added', (newTool: any) => {
         const formatted = {
           id: newTool.id,

@@ -31,7 +31,7 @@ export default function SubmitToolPage() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('ai-tools-token');
-      const res = await fetch('http://localhost:5000/api/tools', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/tools`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

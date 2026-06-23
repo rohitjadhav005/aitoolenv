@@ -49,7 +49,7 @@ export default function AdminPage() {
   });
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/admin/stats')
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/admin/stats`)
       .then(res => res.json())
       .then(data => {
         if (data.totalUsers !== undefined) {
