@@ -83,7 +83,14 @@ export default function ProfilePage() {
             className="glass p-6 mb-6 flex items-start gap-5 flex-wrap"
           >
             <div className="relative">
-              <img src={user.avatar} alt={user.name} className="w-20 h-20 rounded-2xl object-cover border-2 border-violet-500/30" />
+              <img 
+                src={user.avatar} 
+                alt={user.name} 
+                className="w-20 h-20 rounded-2xl object-cover border-2 border-violet-500/30" 
+                onError={e => {
+                  (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=7c3aed&color=fff&size=80`;
+                }}
+              />
               <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-background" />
             </div>
 

@@ -106,11 +106,11 @@ export default function Navbar() {
               {/* Search button */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className="btn-ghost !p-2.5 sm:!px-4 sm:!py-2.5 flex items-center gap-2 text-sm"
+                className="btn-ghost !p-2.5 sm:!px-4 sm:!py-2.5 flex items-center gap-2 text-sm whitespace-nowrap shrink-0"
               >
-                <Search size={18} className="sm:w-[15px] sm:h-[15px]" />
-                <span className="hidden lg:block text-white/40">Search tools...</span>
-                <span className="hidden lg:block text-xs text-white/25 border border-white/10 px-1.5 py-0.5 rounded">⌘K</span>
+                <Search size={18} className="sm:w-[15px] sm:h-[15px] shrink-0" />
+                <span className="hidden lg:block text-white/40 whitespace-nowrap">Search tools...</span>
+                <span className="hidden lg:block text-xs text-white/25 border border-white/10 px-1.5 py-0.5 rounded whitespace-nowrap shrink-0">⌘K</span>
               </button>
               
               {/* Submit Tool */}
@@ -133,7 +133,7 @@ export default function Navbar() {
                       <img 
                         src={user.avatar} 
                         alt={user.name} 
-                        className="w-8 h-8 rounded-lg object-cover" 
+                        className="w-8 h-8 rounded-full object-cover" 
                         onError={e => {
                           (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=7c3aed&color=fff&size=32`;
                         }}
@@ -238,7 +238,7 @@ export default function Navbar() {
                         <img 
                           src={user.avatar} 
                           alt={user.name} 
-                          className="w-10 h-10 rounded-lg object-cover" 
+                          className="w-10 h-10 rounded-full object-cover" 
                           onError={e => {
                             (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=7c3aed&color=fff&size=40`;
                           }}
