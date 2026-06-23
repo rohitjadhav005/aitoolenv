@@ -106,11 +106,10 @@ export default function Navbar() {
               {/* Search button */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className="btn-ghost !p-2.5 sm:!px-4 sm:!py-2.5 flex items-center gap-2 text-sm whitespace-nowrap shrink-0"
+                className="btn-ghost !p-2.5 flex items-center justify-center text-sm shrink-0"
+                aria-label="Search"
               >
-                <Search size={18} className="sm:w-[15px] sm:h-[15px] shrink-0" />
-                <span className="hidden lg:block text-white/40 whitespace-nowrap">Search tools...</span>
-                <span className="hidden lg:block text-xs text-white/25 border border-white/10 px-1.5 py-0.5 rounded whitespace-nowrap shrink-0">⌘K</span>
+                <Search size={18} />
               </button>
               
               {/* Submit Tool */}
