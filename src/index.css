@@ -139,15 +139,15 @@
 
   /* Pricing badges */
   .badge-free {
-    @apply px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/20;
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/20 whitespace-nowrap;
   }
 
   .badge-paid {
-    @apply px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-500/15 text-red-400 border border-red-500/20;
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-500/15 text-red-400 border border-red-500/20 whitespace-nowrap;
   }
 
   .badge-freemium {
-    @apply px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-400 border border-amber-500/20;
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-400 border border-amber-500/20 whitespace-nowrap;
   }
 
   /* Glow orb backgrounds */

@@ -88,7 +88,7 @@ export default function ComparePage() {
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="glass p-5 relative"
+                    className="glass p-4 sm:p-5 relative"
                   >
                     <button
                       onClick={() => setTool(null)}
@@ -96,7 +96,7 @@ export default function ComparePage() {
                     >
                       <X size={16} />
                     </button>
-                    <div className="flex items-center gap-3 mb-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
                       <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shrink-0 shadow-sm p-1.5">
                         <img
                           src={tool.logo}
@@ -105,9 +105,9 @@ export default function ComparePage() {
                           onError={e => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&background=7c3aed&color=fff&size=64`; }}
                         />
                       </div>
-                      <div>
-                        <h3 className="font-bold text-white">{tool.name}</h3>
-                        <span className={pricingColor(tool.pricing)}>{pricingLabel(tool.pricing)}</span>
+                      <div className="min-w-0">
+                        <h3 className="font-bold text-white truncate">{tool.name}</h3>
+                        <span className={`${pricingColor(tool.pricing)} inline-flex mt-1`}>{pricingLabel(tool.pricing)}</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 text-sm">
@@ -204,9 +204,10 @@ export default function ComparePage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="glass overflow-hidden overflow-x-auto"
+              className="glass overflow-hidden"
             >
-              <div className="min-w-[600px] md:min-w-0">
+              <div className="overflow-x-auto">
+                <div className="min-w-[600px] md:min-w-0">
                 {/* Header */}
                 <div className="grid grid-cols-3 border-b border-white/8">
                   <div className="px-6 py-4 text-sm font-semibold text-white/40 uppercase tracking-wider">Feature</div>
@@ -259,9 +260,10 @@ export default function ComparePage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
-          </div>
-        )}
+            </div>
+          </motion.div>
+        </div>
+      )}
 
         {/* Empty state */}
         {!toolA && !toolB && (
