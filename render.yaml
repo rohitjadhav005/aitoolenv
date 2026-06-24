@@ -6,3 +6,5 @@ services:
     buildCommand: npm install
     startCommand: npm start
     plan: free
+    envVars:
+      - fromGroup: aitoolenv
