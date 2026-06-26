@@ -12,12 +12,12 @@ export default {
         display: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
-        background: '#080810',
-        surface: '#0f0f1a',
-        'surface-2': '#151525',
-        'surface-3': '#1a1a30',
-        border: 'rgba(255,255,255,0.08)',
-        'border-strong': 'rgba(255,255,255,0.15)',
+        background: 'var(--background)',
+        surface: 'var(--surface)',
+        'surface-2': 'var(--surface-2)',
+        'surface-3': 'var(--surface-3)',
+        border: 'var(--border)',
+        'border-strong': 'var(--border-strong)',
         accent: {
           DEFAULT: '#D100D1',
           light: '#e879f9',
